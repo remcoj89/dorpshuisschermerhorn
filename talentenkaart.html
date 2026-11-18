@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Talentenkaart | Stichting Dorpshuis Schermerhorn</title>
+  <meta name="description" content="Wat breng jij mee naar ons dorpshuis? Vul de talentenkaart in en laat weten waar je energie van krijgt en waarmee je wilt helpen.">
+  <script>document.documentElement.classList.add('js');</script>
+  <link rel="stylesheet" href="style.css">
+  <script src="main.js" defer></script>
+  <script src="talentenkaart.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Direct naar de inhoud</a>
+
+  <header class="site-header">
+    <div class="container">
+      <a class="site-logo" href="index.html">Dorpshuis Schermerhorn <span>Stichting</span></a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+        <span class="nav-toggle__icon" aria-hidden="true"></span>
+        Menu
+      </button>
+      <nav class="site-nav" id="site-nav" aria-label="Hoofdmenu">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="over-ons.html">Over ons</a></li>
+          <li><a href="vrijwilligers.html">Vrijwilligers</a></li>
+          <li><a href="anbi.html">ANBI</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <header class="page-header">
+      <div class="container">
+        <p class="eyebrow">Talentenkaart &middot; Dorpshuis Schermerhorn</p>
+        <h1>Wat breng jij mee naar ons dorpshuis?</h1>
+        <p>Het dorpshuis is van het dorp. Vertel ons waar je energie van krijgt en waarmee je wilt helpen: vaak, af en toe of voor een losse klus.</p>
+      </div>
+    </header>
+
+    <section class="section">
+      <div class="container">
+        <!-- action = web-app-URL van het Google Apps Script (eindigt op /exec) -->
+        <form class="form" id="talentenkaart" action="GOOGLE_SCRIPT_URL" method="post" novalidate>
+          <div class="form__field">
+            <label for="energie"><span class="form__number">1.</span> Waar krijg ik energie van?</label>
+            <p class="form__hint" id="energie-hint">Wat doe ik graag? Waar word ik enthousiast van?</p>
+            <textarea id="energie" name="energie" rows="4" maxlength="2000" aria-describedby="energie-hint"></textarea>
+          </div>
+
+          <div class="form__field">
+            <label for="meebrengen"><span class="form__number">2.</span> Wat breng je mee?</label>
+            <p class="form__hint" id="meebrengen-hint">Denk aan kennis, ervaring, talent, netwerk of enthousiasme.</p>
+            <textarea id="meebrengen" name="meebrengen" rows="4" maxlength="2000" aria-describedby="meebrengen-hint"></textarea>
+          </div>
+
+          <div class="form__field">
+            <label for="vragen"><span class="form__number">3.</span> Waar mag je mij voor vragen?</label>
+            <p class="form__hint" id="vragen-hint">Welke concrete bijdrage past bij mij: vaak, af en toe of voor een losse klus?</p>
+            <textarea id="vragen" name="vragen" rows="4" maxlength="2000" aria-describedby="vragen-hint"></textarea>
+          </div>
+
+          <div class="form__row">
+            <div class="form__field">
+              <label for="naam">Naam <span class="form__required">(verplicht)</span></label>
+              <input type="text" id="naam" name="naam" autocomplete="name" maxlength="200" required>
+            </div>
+            <div class="form__field">
+              <label for="contact">Telefoon of e-mail <span class="form__required">(verplicht)</span></label>
+              <input type="text" id="contact" name="contact" maxlength="200" required>
+            </div>
+          </div>
+
+          <fieldset class="form__field">
+            <legend>Voorkeur contact</legend>
+            <div class="form__options">
+              <label class="form__check"><input type="checkbox" name="voorkeur" value="telefoon"> telefoon</label>
+              <label class="form__check"><input type="checkbox" name="voorkeur" value="WhatsApp"> WhatsApp</label>
+              <label class="form__check"><input type="checkbox" name="voorkeur" value="e-mail"> e-mail</label>
+            </div>
+          </fieldset>
+
+          <div class="form__field">
+            <label class="form__check">
+              <input type="checkbox" id="toestemming" name="toestemming" value="ja" required>
+              <span>Ja, Stichting Dorpshuis Schermerhorn mag mijn contactgegevens gebruiken om mij te benaderen. <span class="form__required">(verplicht)</span></span>
+            </label>
+          </div>
+
+          <!-- Honeypot tegen spam: verborgen voor bezoekers, bots vullen het in -->
+          <div class="form__honeypot" aria-hidden="true">
+            <label for="website">Laat dit veld leeg</label>
+            <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
+          </div>
+
+          <p class="form__privacy">Je gegevens worden alleen voor dit doel gebruikt en niet zonder jouw toestemming met anderen gedeeld. Je kunt altijd aangeven dat je niet meer benaderd wilt worden. Lees meer in onze <a href="privacyverklaring.html">privacyverklaring</a>.</p>
+
+          <p class="form__status" id="form-status" role="alert"></p>
+
+          <button class="button" type="submit">Verstuur mijn talentenkaart</button>
+        </form>
+
+        <div class="callout form__success" id="form-success" tabindex="-1" hidden>
+          <p class="callout__title">Bedankt voor je talentenkaart!</p>
+          <p>We hebben je antwoorden ontvangen en nemen contact met je op. Samen bouwen we aan een dorpshuis voor heel Schermerhorn.</p>
+          <p><a href="index.html">Terug naar de homepage</a></p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <h2>Stichting Dorpshuis Schermerhorn</h2>
+          <address>
+            Oosteinde 6<br>
+            1636 XV Schermerhorn
+          </address>
+          <p>Postadres tijdens de bouw:</p>
+          <address>
+            Oosteinde 12<br>
+            1636 XV Schermerhorn
+          </address>
+        </div>
+        <div>
+          <h2>Contact</h2>
+          <ul>
+            <li><a href="mailto:info@dorpshuisschermerhorn.nl">info@dorpshuisschermerhorn.nl</a></li>
+          </ul>
+        </div>
+        <nav aria-label="Documenten">
+          <h2>Documenten</h2>
+          <ul>
+            <li><a href="anbi.html">ANBI-gegevens</a></li>
+            <li><a href="statuten.html">Statuten</a></li>
+            <li><a href="beleidsplan.html">Beleidsplan</a></li>
+            <li><a href="brainstorm-2026-2035.html">Brainstorm 2026&ndash;2035</a></li>
+          </ul>
+        </nav>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; <span id="year">2026</span> Stichting Dorpshuis Schermerhorn &middot; KvK 42159837 &middot; RSIN 869976679</p>
+        <p><a href="privacyverklaring.html">Privacyverklaring</a></p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
