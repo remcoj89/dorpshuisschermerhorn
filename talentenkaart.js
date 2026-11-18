@@ -16,16 +16,15 @@ if (form && statusEl && successEl) {
 
   // Our own check instead of the browser bubbles, so messages are in Dutch and consistent
   const validate = () => {
-    const required = [
-      [form.naam, 'Vul je naam in.'],
-      [form.contact, 'Vul je telefoonnummer of e-mailadres in.']
-    ];
+    if (!form.naam.value.trim()) {
+      showError('Vul je naam in.', form.naam);
+      return false;
+    }
 
-    for (const [field, message] of required) {
-      if (!field.value.trim()) {
-        showError(message, field);
-        return false;
-      }
+    // Basic format check (name@domain.tld); novalidate turns off the browser's own check
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email.value.trim())) {
+      showError('Vul een geldig e-mailadres in.', form.email);
+      return false;
     }
 
     if (!form.toestemming.checked) {

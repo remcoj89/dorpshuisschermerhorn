@@ -665,6 +665,72 @@ main {
   }
 }
 
+/* ---------- Team cards (talentenkaart) ---------- */
+.team-grid {
+  align-items: start; /* an opened card should not stretch its neighbours */
+}
+
+.team-card {
+  & h3 {
+    color: var(--clr-primary-dark);
+  }
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.375rem;
+  list-style: none;
+  padding: 0;
+  margin-block-start: var(--space-xs);
+
+  & li {
+    padding: 0.25em 0.75em;
+    font-size: var(--fs-sm);
+    font-weight: 600;
+    color: var(--clr-primary-dark);
+    background: #e3ead9;
+    border-radius: 0.75rem; /* stays tidy when a long label wraps */
+
+    &:nth-child(3n + 2) {
+      background: #f3e9d6;
+    }
+
+    &:nth-child(3n) {
+      background: #f6dfcc;
+    }
+  }
+}
+
+.team-card__more {
+  margin-block-start: var(--space-xs);
+  font-size: var(--fs-sm);
+
+  & summary {
+    font-weight: 600;
+    color: var(--clr-primary);
+    cursor: pointer;
+  }
+
+  & ul {
+    padding-inline-start: 1.25rem;
+    margin-block-start: var(--space-xs);
+  }
+
+  & li + li {
+    margin-block-start: 0.125rem;
+  }
+}
+
+.team-card__group {
+  margin-block-start: var(--space-sm);
+  font-weight: 700;
+
+  .card & {
+    color: var(--clr-text);
+  }
+}
+
 /* ---------- Forms (talentenkaart) ---------- */
 .form {
   display: grid;
@@ -672,6 +738,8 @@ main {
   max-width: var(--content-max);
 
   & input[type="text"],
+  & input[type="email"],
+  & input[type="tel"],
   & textarea {
     width: 100%;
     padding: 0.625em 0.75em;
@@ -758,6 +826,15 @@ main {
   display: flex;
   flex-wrap: wrap;
   gap: var(--space-xs) var(--space-md);
+}
+
+.form__options--stacked {
+  display: grid;
+  gap: var(--space-xs) var(--space-md);
+
+  @media (min-width: 36em) {
+    grid-template-columns: 1fr 1fr;
+  }
 }
 
 .form__check {
