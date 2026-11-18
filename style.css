@@ -74,6 +74,11 @@ body {
   background-color: var(--clr-bg);
 }
 
+/* Keep [hidden] working on elements that set their own display (e.g. .form) */
+[hidden] {
+  display: none !important;
+}
+
 img,
 svg {
   display: block;
@@ -868,6 +873,11 @@ main {
 
 .form__success {
   max-width: var(--content-max);
+
+  /* Focus is set from JS so screen readers announce it; no visible ring needed */
+  &:focus {
+    outline: none;
+  }
 }
 
 /* ---------- Footer ---------- */
